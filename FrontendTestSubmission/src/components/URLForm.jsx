@@ -1,4 +1,4 @@
-import { TextField, Button, Box, InputAdornment, Tooltip } from "@mui/material";
+import { TextField, Button, Box, InputAdornment, Tooltip, Grid, Paper, Typography } from "@mui/material";
 import { useState } from "react";
 
 const URLForm = ({ onSubmit }) => {
@@ -38,49 +38,72 @@ const URLForm = ({ onSubmit }) => {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ p: 2 }}>
-      <TextField
-        fullWidth
-        label="Enter URL"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-        required
-        error={!!errors.url}
-        helperText={errors.url}
-        sx={{ mb: 2 }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <Tooltip title="Include http:// or https://">
-                <span role="img" aria-label="info">ℹ️</span>
-              </Tooltip>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <TextField
-        fullWidth
-        label="Custom Shortcode (optional)"
-        value={customCode}
-        onChange={(e) => setCustomCode(e.target.value)}
-        error={!!errors.customCode}
-        helperText={errors.customCode || "Only letters, numbers, - and _ allowed"}
-        sx={{ mb: 2 }}
-      />
-      <TextField
-        fullWidth
-        label="Validity in minutes"
-        type="number"
-        value={validity}
-        onChange={(e) => setValidity(e.target.value)}
-        error={!!errors.validity}
-        helperText={errors.validity || "1 - 1440 minutes"}
-        inputProps={{ min: 1, max: 1440 }}
-        sx={{ mb: 2 }}
-      />
-      <Button type="submit" variant="contained" fullWidth>
-        Shorten
-      </Button>
+    <Box
+      component={Paper}
+      elevation={3}
+      sx={{
+        p: { xs: 2, sm: 4 },
+        mt: 4,
+        width: "100%",
+        maxWidth: "600px",
+        mx: "auto",
+        borderRadius: 2,
+      }}
+    >
+      <Typography variant="h5" align="center" gutterBottom>
+        🔗 URL Shortener
+      </Typography>
+      <Box component="form" onSubmit={handleSubmit} noValidate>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Enter URL"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+              error={!!errors.url}
+              helperText={errors.url}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Tooltip title="Include http:// or https://">
+                      <span role="img" aria-label="info">ℹ️</span>
+                    </Tooltip>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Custom Shortcode (optional)"
+              value={customCode}
+              onChange={(e) => setCustomCode(e.target.value)}
+              error={!!errors.customCode}
+              helperText={errors.customCode || "Only letters, numbers, - and _ allowed"}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Validity in minutes"
+              type="number"
+              value={validity}
+              onChange={(e) => setValidity(e.target.value)}
+              error={!!errors.validity}
+              helperText={errors.validity || "1 - 1440 minutes"}
+              inputProps={{ min: 1, max: 1440 }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Shorten URL
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
     </Box>
   );
 };

@@ -1,0 +1,19 @@
+/* src/pages/Home.css */
+
+.home-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    padding: 0.5rem;
+    gap: 1.5rem;
+  }
+}

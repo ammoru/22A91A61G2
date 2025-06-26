@@ -11,7 +11,7 @@ const App = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div">
-            🔗 URL Shortener
+          URL Shortener
           </Typography>
         </Toolbar>
       </AppBar>
